@@ -34,7 +34,7 @@ def add_user():
 @app.route("/users")
 def get_users():
   users = User.query.all()
-  return render_template('layout2.html', users=users)
+  return render_template('layout.html', users=users)
 
 db.create_all()
 
