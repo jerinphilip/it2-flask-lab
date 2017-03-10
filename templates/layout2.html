@@ -1,0 +1,22 @@
+
+<!-- File: layout.html -->
+<!DOCTYPE html>
+<html>
+   <body>
+      <h1>Hello !</h1>
+        <table>
+            <thead>
+                <td>Name</td>
+                <td>e-mail</td>
+            </thead>
+            <tbody>
+              {% for user in users %}
+                <tr>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+        </table>
+   </body>
+</html>

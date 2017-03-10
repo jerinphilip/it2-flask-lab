@@ -1,8 +1,9 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
+
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test2.db'
 db = SQLAlchemy(app)
 
 class User(db.Model):
@@ -15,7 +16,7 @@ class User(db.Model):
         self.email = email
 
     def __repr__(self):
-        return '<User %r>' % self.username
+        return '<User %r, %r, %r>' %(self.username, self.email, self.id)
 
 db.create_all()
 admin = User('admin', 'admin@example.com')
@@ -23,3 +24,6 @@ guest = User('guest', 'guest@example.com')
 db.session.add(admin)
 db.session.add(guest)
 db.session.commit()
+
+print(admin)
+print(guest)
