@@ -20,16 +20,20 @@ class User(db.Model):
 
 
 # Controllers
-@app.route("/addUser")
+@app.route("/addUser", methods=['GET', 'POST'])
 def add_user():
-  name = request.args.get("name")
-  email = request.args.get("email")
-  print(name, email)
+    if request.method == 'POST':
+        name = request.form["name"]
+        email = request.form["email"]
+        print(name, email)
 
-  user = User(name, email)
-  db.session.add(user)
-  db.session.commit()
-  return "Successfully added"
+        user = User(name, email)
+        db.session.add(user)
+        db.session.commit()
+        return redirect('/users')
+    else:
+        return render_template('form.html')
+
 
 @app.route("/users")
 def get_users():
